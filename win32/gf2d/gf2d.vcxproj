@@ -40,23 +40,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\</OutDir>
-    <IncludePath>C:\Users\djkehoe\git\gameframework2d\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Alex\Documents\Visual Studio 2012\Projects\gameframework2d\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\</OutDir>
-    <IncludePath>C:\Users\djkehoe\git\gameframework2d\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Alex\Documents\Visual Studio 2012\Projects\gameframework2d\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level2</WarningLevel>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\djkehoe\git\gameframework2d\win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alex\Documents\Visual Studio 2012\Projects\gameframework2d\win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\djkehoe\git\gameframework2d\win32\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Alex\Documents\Visual Studio 2012\Projects\gameframework2d\win32\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -68,14 +68,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\djkehoe\git\gameframework2d\win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alex\Documents\Visual Studio 2012\Projects\gameframework2d\win32\include;C:\Users\djkehoe\git\gameframework2d\win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Users\djkehoe\git\gameframework2d\win32\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Alex\Documents\Visual Studio 2012\Projects\gameframework2d\win32\lib\x86;C:\Users\djkehoe\git\gameframework2d\win32\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -87,6 +87,7 @@
     <ClCompile Include="..\..\src\gf2d_sprite.c" />
     <ClCompile Include="..\..\src\gf2d_vector.c" />
     <ClCompile Include="..\..\src\simple_logger.c" />
+    <ClCompile Include="PriorityQ.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\gf2d_draw.h" />
@@ -96,6 +97,7 @@
     <ClInclude Include="..\..\include\gf2d_types.h" />
     <ClInclude Include="..\..\include\gf2d_vector.h" />
     <ClInclude Include="..\..\include\simple_logger.h" />
+    <ClInclude Include="PriorityQ.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
