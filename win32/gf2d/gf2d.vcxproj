@@ -86,8 +86,8 @@
     <ClCompile Include="..\..\src\gf2d_graphics.c" />
     <ClCompile Include="..\..\src\gf2d_sprite.c" />
     <ClCompile Include="..\..\src\gf2d_vector.c" />
+    <ClCompile Include="..\..\src\PriorityQ.c" />
     <ClCompile Include="..\..\src\simple_logger.c" />
-    <ClCompile Include="PriorityQ.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\gf2d_draw.h" />
@@ -96,8 +96,8 @@
     <ClInclude Include="..\..\include\gf2d_text.h" />
     <ClInclude Include="..\..\include\gf2d_types.h" />
     <ClInclude Include="..\..\include\gf2d_vector.h" />
+    <ClInclude Include="..\..\include\PriorityQ.h" />
     <ClInclude Include="..\..\include\simple_logger.h" />
-    <ClInclude Include="PriorityQ.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

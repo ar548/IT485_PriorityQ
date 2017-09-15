@@ -33,7 +33,7 @@
     <ClCompile Include="..\..\src\simple_logger.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PriorityQ.c">
+    <ClCompile Include="..\..\src\PriorityQ.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +59,7 @@
     <ClInclude Include="..\..\include\simple_logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PriorityQ.h">
+    <ClInclude Include="..\..\include\PriorityQ.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

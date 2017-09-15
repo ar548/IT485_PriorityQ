@@ -1,6 +1,12 @@
 #ifndef __PQ__
 #define __PQ__
 
+typedef struct{
+	void* data;	// size of elementSize
+	int priority;
+}pq_node_t;
+
+
 typedef struct
 {
 	// more of my stuff goes here
@@ -9,12 +15,6 @@ typedef struct
 	int maxElements;
 	size_t nodeSize;
 }PriorityQueue;
-
-typedef struct{
-	void* data;	// size of elementSize
-	int priority;
-}pq_node_t;
-
 
 
 PriorityQueue * pq_new(size_t elementSize);
