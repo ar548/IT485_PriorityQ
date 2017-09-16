@@ -76,6 +76,7 @@ int main(int argc, char * argv[])
 	print_priotities(pq);
 	slog("str 6: %s", pq_delete_min(pq));
 	print_priotities(pq);
+
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
