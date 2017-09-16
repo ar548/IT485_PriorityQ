@@ -63,19 +63,12 @@ int main(int argc, char * argv[])
 	pq_insert(pq, (void*)"four ", 4);
 	pq_insert(pq, (void*)"five ", 5);
 
-	print_priotities(pq);
 	slog("str 1: %s", pq_delete_min(pq));
-	print_priotities(pq);
 	slog("str 2: %s", pq_delete_min(pq));
-	print_priotities(pq);
 	slog("str 3: %s", pq_delete_min(pq));
-	print_priotities(pq);
 	slog("str 4: %s", pq_delete_min(pq));
-	print_priotities(pq);
 	slog("str 5: %s", pq_delete_min(pq));
-	print_priotities(pq);
 	slog("str 6: %s", pq_delete_min(pq));
-	print_priotities(pq);
 
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
