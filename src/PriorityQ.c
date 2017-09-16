@@ -19,6 +19,7 @@ PriorityQueue * pq_new(size_t elementSize)
 	pq->head = NULL;
 	pq->tail = NULL;
 	pq->nodeSize = elementSize;
+	pq->numNodes = 0;
 	return pq;
 }
 
@@ -52,14 +53,14 @@ void pq_free(PriorityQueue *pq)
 void *pq_delete_max(PriorityQueue *pq)
 {
 	void *r = NULL;
-	
 	if (pq == NULL)return NULL;
 	if (pq_isEmpty(pq)) {
 		slog("Error: attpemting to dequeue from an empty queue.");
 		return NULL;
 	}
-	
-	 r = pq->tail->data;
+
+	pq->numNodes--;
+	r = pq->tail->data;
 
 	// if there is only one node
 	if (pq->tail->prev == NULL) {
@@ -85,10 +86,11 @@ void *pq_delete_min(PriorityQueue *pq)
 		return NULL;
 	}
 
+	pq->numNodes--;
 	r = pq->head->data;
 
 	// if there is only one node
-	if (pq->head->prev == NULL) {
+	if (pq->head->next == NULL) {
 		pq->tail = NULL;
 		pq->head = NULL;
 	}
@@ -110,9 +112,10 @@ void pq_insert(PriorityQueue *pq, void *data, int priority)
 	if (data == NULL)return;
 
 	temp = pq_node_new(data, priority);
+	pq->numNodes++;
 
 	// check if the queue is empty
-	if (pq_isEmpty(pq)) {
+	if(pq_isEmpty(pq)) {
 		pq->head = temp;
 		pq->tail = temp;
 		return;
@@ -121,7 +124,6 @@ void pq_insert(PriorityQueue *pq, void *data, int priority)
 	// check priority is greater than tail->priority (the nes node will be new tail)
 	if (priority >= pq->tail->priority)
 	{
-		// TODO: move this check up to the start of the function to save on time
 		pq->tail->next = temp;
 		temp->prev = pq->tail;
 		pq->tail = temp;
@@ -139,7 +141,6 @@ void pq_insert(PriorityQueue *pq, void *data, int priority)
 		curr = curr->next;
 	}
 
-	// this should also work even if the node is the head
 	temp->prev = curr->prev;
 	temp->next = curr;
 	temp->next->prev = temp;
@@ -147,4 +148,21 @@ void pq_insert(PriorityQueue *pq, void *data, int priority)
 	if (temp->prev != NULL) {
 		temp->prev->next = temp;
 	}
+	else{
+		pq->head = temp;
+	}
+}
+
+void print_priotities(PriorityQueue *pq){
+	// prints the values from greatest to least
+	pq_node_t *curr;
+	if(pq_isEmpty(pq))return;
+
+	curr = pq->head;
+	while(curr->next != NULL){
+		printf("%i, ", curr->priority);
+		curr = curr->next;
+	}
+
+	printf("%i \n", curr->priority);
 }

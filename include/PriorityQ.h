@@ -17,6 +17,7 @@ typedef struct {
 	pq_node_t *head;
 	pq_node_t *tail;
 	size_t nodeSize;
+	int numNodes;
 } PriorityQueue;
 
 PriorityQueue *pq_new(size_t elementSize);
@@ -24,5 +25,6 @@ void pq_free(PriorityQueue *pq);
 void *pq_delete_max(PriorityQueue *pq);
 void *pq_delete_min(PriorityQueue *pq);
 void pq_insert(PriorityQueue *pq, void*data, int priority);
+void print_priotities(PriorityQueue *pq);
 
 #endif
