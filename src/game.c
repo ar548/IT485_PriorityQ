@@ -48,7 +48,6 @@ int main(int argc, char * argv[])
 	pq_insert(pq, (void*)"five ", 5);
 	print_priotities(pq);
 
-
 	slog("str 1: %s", pq_delete_max(pq));
 	slog("str 2: %s", pq_delete_max(pq));
 	slog("str 3: %s", pq_delete_max(pq));
