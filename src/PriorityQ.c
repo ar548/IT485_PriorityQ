@@ -3,6 +3,7 @@
 #include "PriorityQ.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 int pq_isEmpty(PriorityQueue *pq) {
@@ -165,4 +166,28 @@ void print_priotities(PriorityQueue *pq){
 	}
 
 	printf("%i \n", curr->priority);
+}
+
+void *pq_toArray_ascending(PriorityQueue *pq){
+	void* ar = malloc(pq->nodeSize * pq->numNodes);
+	int i = 0;
+	pq_node_t *curr = pq->tail;
+	for(i = 0; i < pq->numNodes; i++){
+		memcpy( ((char *)ar + i * (pq->nodeSize) ), curr->data, pq->nodeSize );
+		curr = curr->prev;
+	}
+
+	return ar;
+}
+
+void *pq_toArray_descending(PriorityQueue *pq){
+	void* ar = malloc(pq->nodeSize * pq->numNodes);
+	int i = 0;
+	pq_node_t *curr = pq->head;
+	for(i = 0; i < pq->numNodes; i++){
+		memcpy( ((char *)ar + i * (pq->nodeSize) ), curr->data, pq->nodeSize );
+		curr = curr->next;
+	}
+
+	return ar;
 }

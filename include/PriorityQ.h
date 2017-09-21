@@ -26,5 +26,7 @@ void *pq_delete_max(PriorityQueue *pq);
 void *pq_delete_min(PriorityQueue *pq);
 void pq_insert(PriorityQueue *pq, void*data, int priority);
 void print_priotities(PriorityQueue *pq);
+void *pq_toArray_ascending(PriorityQueue *pq);
+void *pq_toArray_descending(PriorityQueue *pq);
 
 #endif
