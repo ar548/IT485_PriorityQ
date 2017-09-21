@@ -10,15 +10,16 @@ struct pqh_node{
 };
 
 typedef struct {
-	pqh_node_t *nodes;
 	size_t elementSize;
 	int numElements;
-	int manElements;
+	int maxElements;
+	pqh_node_t *nodes;
 } PriorityQHeap;
 
 PriorityQHeap * pqh_new(size_t elementSize);
 void pqh_free(PriorityQHeap *pqh);
 void* pqh_delete_max(PriorityQHeap *pqh);
-void insert(PriorityQHeap *pqh, int priority, void* data);
+void pqh_insert(PriorityQHeap *pqh, void* data, int priority);
+void pqh_print_nodes(PriorityQHeap *pqh);
 
 #endif
