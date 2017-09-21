@@ -13,7 +13,7 @@ typedef struct {
 	size_t elementSize;
 	int numElements;
 	int maxElements;
-	pqh_node_t *nodes;
+	pqh_node_t **nodes;
 } PriorityQHeap;
 
 PriorityQHeap * pqh_new(size_t elementSize);

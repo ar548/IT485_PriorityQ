@@ -85,6 +85,7 @@ int main(int argc, char * argv[])
     SDL_ShowCursor(SDL_DISABLE);
 	
 	/*for testing of Alex Rosen's project only*/
+	/*/
 	for(i = 0; i<10; i++)
 		pq_insert(pq, &bricklist[i], bricklist[i].width);
 	for(i = 0; i<10; i++)
@@ -97,13 +98,18 @@ int main(int argc, char * argv[])
 
 	for(i = 0; i<10; i++)
 		pq_insert(pq, &bricklist[i], bricklist[i].width);
-	
 	TestBrickList = (Brick*)pq_toArray_ascending(pq);
-
-	/*/
+	/**/
+	for(i = 0; i<10; i++)
+		pq_insert(pq, &bricklist[i], bricklist[i].width);
+	TestBrickList = (Brick*)pq_toArray_descending(pq);
+	/**/
+	/**/
 	pqh_insert(pqh, (void*)"three", 3);
 	pqh_print_nodes(pqh);
 	pqh_insert(pqh, (void*)"one  ", 1);
+	pqh_print_nodes(pqh);
+	pqh_insert(pqh, (void*)"thirteen", 13);
 	pqh_print_nodes(pqh);
 	pqh_insert(pqh, (void*)"three", 3);
 	pqh_print_nodes(pqh);
@@ -114,8 +120,6 @@ int main(int argc, char * argv[])
 	pqh_insert(pqh, (void*)"four ", 4);
 	pqh_print_nodes(pqh);
 	pqh_insert(pqh, (void*)"nine ", 9);
-	pqh_print_nodes(pqh);
-	pqh_insert(pqh, (void*)"thirteen", 13);
 	pqh_print_nodes(pqh);
 	pqh_insert(pqh, (void*)"six  ", 6);
 	pqh_print_nodes(pqh);
