@@ -123,6 +123,21 @@ int main(int argc, char * argv[])
 	pqh_print_nodes(pqh);
 	pqh_insert(pqh, (void*)"six  ", 6);
 	pqh_print_nodes(pqh);
+
+	slog("str 1: %s", pqh_delete_min(pqh));
+	slog("str 2: %s", pqh_delete_min(pqh));
+	slog("str 3: %s", pqh_delete_min(pqh));
+	slog("str 4: %s", pqh_delete_min(pqh));
+	slog("str 5: %s", pqh_delete_min(pqh));
+	slog("str 6: %s", pqh_delete_min(pqh));
+	slog("str 7: %s", pqh_delete_min(pqh));
+	slog("str 8: %s", pqh_delete_min(pqh));
+	slog("str 9: %s", pqh_delete_min(pqh));
+	slog("str 10: %s", pqh_delete_min(pqh));
+	slog("str 11: %s", pqh_delete_min(pqh));
+	slog("str 12: %s", pqh_delete_min(pqh));
+
+
 	/**/
     /*/
 	pq_insert(pq, (void*)"three", 3);

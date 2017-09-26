@@ -18,7 +18,7 @@ typedef struct {
 
 PriorityQHeap * pqh_new(size_t elementSize);
 void pqh_free(PriorityQHeap *pqh);
-void* pqh_delete_max(PriorityQHeap *pqh);
+void* pqh_delete_min(PriorityQHeap *pqh);
 void pqh_insert(PriorityQHeap *pqh, void* data, int priority);
 void pqh_print_nodes(PriorityQHeap *pqh);
 
