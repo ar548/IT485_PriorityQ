@@ -34,8 +34,14 @@ void* pqh_delete_min(PriorityQHeap *pqh)
 	pqh->numElements--;
 
 	curr = 0;
-	while( (curr*2+2 < pqh->numElements) 
-		&& (pqh->nodes[curr]->priority > pqh->nodes[curr * 2 + 1]->priority || pqh->nodes[curr]->priority > pqh->nodes[curr * 2 + 2]->priority) )
+	while( 
+		(
+			curr*2+2 < pqh->numElements
+		) && (
+			pqh->nodes[curr]->priority > pqh->nodes[curr * 2 + 1]->priority  || 
+			pqh->nodes[curr]->priority > pqh->nodes[curr * 2 + 2]->priority
+		) 
+	)
 	{
 		// swap curr with its least child
 		if(pqh->nodes[curr * 2 + 1]->priority <= pqh->nodes[curr * 2 + 2]->priority)
