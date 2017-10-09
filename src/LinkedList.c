@@ -215,4 +215,3 @@ int DLL_Empty(DLL_t *DLL){
 		return 1;
 	return 0;
 }
-
