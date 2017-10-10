@@ -103,7 +103,7 @@ DLL_t* path_find(TileMap *map)
 				}
 			}
 		}
-		free(temp);
+		//free(temp);
 
 		// check right
 		v = vector2d(curr->x-1, curr->y);
@@ -167,7 +167,7 @@ DLL_t* path_find(TileMap *map)
 				}
 			}
 		}
-		free(temp);
+		//free(temp);
 
 		// check above
 		v = vector2d(curr->x-1, curr->y);
@@ -231,7 +231,7 @@ DLL_t* path_find(TileMap *map)
 				}
 			}
 		}
-		free(temp);
+		//free(temp);
 
 		// check below
 		v = vector2d(curr->x-1, curr->y);
@@ -295,7 +295,7 @@ DLL_t* path_find(TileMap *map)
 				}
 			}
 		}
-		free(temp);
+		//free(temp);
 
 
 		// check the one above
