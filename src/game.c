@@ -3,6 +3,8 @@
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
 #include "tilemap.h"
+#include "LinkedList.h"
+#include "Path.h"
 
 int main(int argc, char * argv[])
 {
@@ -17,6 +19,10 @@ int main(int argc, char * argv[])
     TileMap *map;
     Vector4D mouseColor = {0,0,255,200};
     static Vector2D path[2];
+	
+	Vector2D *myPath;
+	DLL_t *dllPath;
+	int pathLength;
    
     /*program initializtion*/
     init_logger("gf2d.log");
@@ -41,6 +47,13 @@ int main(int argc, char * argv[])
     map = tilemap_load("levels/tilemap.map");
     vector2d_copy(path[0],map->start);
     vector2d_copy(path[1],map->end);
+
+	/* test code for my pathing algorithm */
+	dllPath = path_find(map);
+	myPath = (Vector2D*)DLL_to_array_forward(dllPath);
+	pathLength = dllPath->length;
+
+
     /*main game loop*/
     while(!done)
     {
@@ -58,6 +71,7 @@ int main(int argc, char * argv[])
                         
             tilemap_draw(map,vector2d(86,24));
             tilemap_draw_path(path,2, map,vector2d(86,24));
+			tilemap_draw_path(myPath,pathLength, map,vector2d(86,24));
             //UI elements last
             gf2d_sprite_draw(
                 mouse,

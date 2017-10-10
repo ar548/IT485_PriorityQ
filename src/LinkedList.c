@@ -148,9 +148,16 @@ void* DLL_pop_front(DLL_t *DLL)
 
 	temp = DLL->head;
 	
-	DLL->head = DLL->head->next;
-	DLL->head->prev = NULL;
-
+	if(DLL->tail == temp)
+	{
+		DLL->head = NULL;
+		DLL->tail = NULL;
+	}
+	else
+	{
+		DLL->head = DLL->head->next;
+		DLL->head->prev = NULL;
+	}
 	data = temp->data;
 	DLL_free_node(&temp);
 
@@ -173,10 +180,19 @@ void* DLL_pop_back(DLL_t *DLL)
 		return NULL;
 	}
 
+
 	temp = DLL->tail;
-	
-	DLL->tail = DLL->tail->prev;
-	DLL->tail->next = NULL;
+
+	if(DLL->head == temp)
+	{
+		DLL->head = NULL;
+		DLL->tail = NULL;
+	}
+	else
+	{
+		DLL->tail = DLL->tail->prev;
+		DLL->tail->next = NULL;
+	}
 
 	data = temp->data;
 	DLL_free_node(&temp);

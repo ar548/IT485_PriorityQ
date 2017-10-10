@@ -79,6 +79,8 @@ void* DLL_pop_front(DLL_t *DLL);
  * @param the DLL to remove the first element of
  */
 void* DLL_pop_back(DLL_t *DLL);
+
+
 void* DLL_to_array_forward(DLL_t *DLL);
 void* DLL_to_array_backward(DLL_t *DLL);
 

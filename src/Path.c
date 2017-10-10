@@ -5,13 +5,14 @@
 
 #define get_heuristic(map, curr)		((map->end.x - curr->x)*(map->end.x - curr->x) + (map->end.y - curr->y)*(map->end.y - curr->y))
 
+
 DLL_t* path_find(TileMap *map)
 {
 	/* initialize variables */
 	DLL_t *open = DLL_new(sizeof(Vector2D));
 	DLL_t *closed = DLL_new(sizeof(Vector2D));
 	DLL_t *ret = DLL_new(sizeof(Vector2D));
-	Vector2D *curr, *temp;
+	Vector2D *curr, *temp, v;
 	int *cost = (int*)malloc(sizeof(int) * map->width * map->height);
 	//int *heuristic = (int*)malloc(sizeof(int) * map->width * map->height);
 	int index_temp, index_curr;
@@ -41,7 +42,9 @@ DLL_t* path_find(TileMap *map)
 		index_curr = curr->x + curr->y * width;
 
 		// check left
-		*temp = vector2d(curr->x-1, curr->y);
+		v = vector2d(curr->x-1, curr->y);
+		temp = &v;
+		//free(&v);
 		if(temp->x < 0) { 
 			/* TODO: ask DJ how the pacman case should be handled */
 			// for this assignment do not even check it
@@ -51,11 +54,44 @@ DLL_t* path_find(TileMap *map)
 			{ 
 				/* return the correct array of the  */
 				DLL_insert_front(ret, temp);
-				DLL_insert_front(ret, curr);
 				while(curr->x != startx && curr->y != starty)
 				{
-
+					DLL_insert_front(ret, curr);
+					index_curr = curr->x + curr->y * width;
+					if( curr->x - 1 > 0 )
+					{
+						if(cost[index_curr] == cost[index_curr - 1] + 1)
+						{
+							curr->x--;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->x + 1 < width )
+					{
+						if(cost[index_curr] == cost[index_curr + 1] + 1)
+						{
+							curr->x++;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->y - 1 > 0 )
+					{
+						if(cost[index_curr] == cost[index_curr - width] + 1)
+						{
+							curr->y--;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->y + 1 < height )
+					{
+						if(cost[index_curr] == cost[index_curr + width] + 1)
+						{
+							curr->y++;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
 				}
+				return ret;
 			}
 			index_temp = temp->x + temp->y * width;
 			if(map->map[index_temp] == 0)
@@ -67,10 +103,199 @@ DLL_t* path_find(TileMap *map)
 				}
 			}
 		}
-
 		free(temp);
 
-		
+		// check right
+		v = vector2d(curr->x-1, curr->y);
+		temp = &v;
+		//free(&v);
+		if(temp->x > width) { 
+			/* TODO: ask DJ how the pacman case should be handled */
+			// for this assignment do not even check it
+		}
+		else{
+			if(temp->x == endx && temp->y == endy) 
+			{ 
+				/* return the correct array of the  */
+				DLL_insert_front(ret, temp);
+				while(curr->x != startx && curr->y != starty)
+				{
+					DLL_insert_front(ret, curr);
+					index_curr = curr->x + curr->y * width;
+					if( curr->x - 1 > 0 )
+					{
+						if(cost[index_curr] == cost[index_curr - 1] + 1)
+						{
+							curr->x--;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->x + 1 < width )
+					{
+						if(cost[index_curr] == cost[index_curr + 1] + 1)
+						{
+							curr->x++;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->y - 1 > 0 )
+					{
+						if(cost[index_curr] == cost[index_curr - width] + 1)
+						{
+							curr->y--;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->y + 1 < height )
+					{
+						if(cost[index_curr] == cost[index_curr + width] + 1)
+						{
+							curr->y++;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+				}
+				return ret;
+			}
+			index_temp = temp->x + temp->y * width;
+			if(map->map[index_temp] == 0)
+			{
+				if(cost[index_curr] + 1 < cost[index_temp])
+				{
+					cost[index_temp] = cost[index_curr] + 1;
+					DLL_insert_front(open, temp);
+				}
+			}
+		}
+		free(temp);
+
+		// check above
+		v = vector2d(curr->x-1, curr->y);
+		temp = &v;
+		//free(&v);
+		if(temp->x < 0) { 
+			/* TODO: ask DJ how the pacman case should be handled */
+			// for this assignment do not even check it
+		}
+		else{
+			if(temp->x == endx && temp->y == endy) 
+			{ 
+				/* return the correct array of the  */
+				DLL_insert_front(ret, temp);
+				while(curr->x != startx && curr->y != starty)
+				{
+					DLL_insert_front(ret, curr);
+					index_curr = curr->x + curr->y * width;
+					if( curr->x - 1 > 0 )
+					{
+						if(cost[index_curr] == cost[index_curr - 1] + 1)
+						{
+							curr->x--;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->x + 1 < width )
+					{
+						if(cost[index_curr] == cost[index_curr + 1] + 1)
+						{
+							curr->x++;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->y - 1 > 0 )
+					{
+						if(cost[index_curr] == cost[index_curr - width] + 1)
+						{
+							curr->y--;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->y + 1 < height )
+					{
+						if(cost[index_curr] == cost[index_curr + width] + 1)
+						{
+							curr->y++;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+				}
+				return ret;
+			}
+			index_temp = temp->x + temp->y * width;
+			if(map->map[index_temp] == 0)
+			{
+				if(cost[index_curr] + 1 < cost[index_temp])
+				{
+					cost[index_temp] = cost[index_curr] + 1;
+					DLL_insert_front(open, temp);
+				}
+			}
+		}
+		free(temp);
+
+		// check below
+		v = vector2d(curr->x-1, curr->y);
+		temp = &v;
+		//free(&v);
+		if(temp->x < 0) {
+			/* TODO: ask DJ how the pacman case should be handled */
+			// for this assignment do not even check it
+		}
+		else{
+			if(temp->x == endx && temp->y == endy) 
+			{ 
+				/* return the correct array of the  */
+				DLL_insert_front(ret, temp);
+				while(curr->x != startx && curr->y != starty)
+				{
+					DLL_insert_front(ret, curr);
+					index_curr = curr->x + curr->y * width;
+					if( curr->x - 1 > 0 )
+					{
+						if(cost[index_curr] == cost[index_curr - 1] + 1)
+						{
+							curr->x--;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->x + 1 < width )
+					{
+						if(cost[index_curr] == cost[index_curr + 1] + 1)
+						{
+							curr->x++;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->y - 1 > 0 )
+					{
+						if(cost[index_curr] == cost[index_curr - width] + 1)
+						{
+							curr->y--;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+					if( curr->y + 1 < height )
+					{
+						if(cost[index_curr] == cost[index_curr + width] + 1)
+						{
+							curr->y++;	// I just know that this is going to cause an issue
+							continue;
+						}
+					}
+				}
+				return ret;
+			}
+			index_temp = temp->x + temp->y * width;
+			if(map->map[index_temp] == 0)
+			{
+				if(cost[index_curr] + 1 < cost[index_temp])
+				{
+					cost[index_temp] = cost[index_curr] + 1;
+					DLL_insert_front(open, temp);
+				}
+			}
+		}
+		free(temp);
 
 
 		// check the one above
