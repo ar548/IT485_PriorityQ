@@ -41,7 +41,7 @@ void DLL_free_node(DLL_node_t **node){
 	if(!node)return;
 	temp = *node;
 	if(temp->data){
-		printf("Warning: attempting to free a node that still has data");
+		printf("Warning: attempting to free a node that still has dat\n");
 	}
 	free(temp);
 	temp = NULL;
@@ -159,7 +159,7 @@ void* DLL_pop_front(DLL_t *DLL)
 		DLL->head->prev = NULL;
 	}
 	data = temp->data;
-	DLL_free_node(&temp);
+	//DLL_free_node(&temp);
 
 	return data;
 }
@@ -195,29 +195,59 @@ void* DLL_pop_back(DLL_t *DLL)
 	}
 
 	data = temp->data;
-	DLL_free_node(&temp);
+	//DLL_free_node(&temp);
 
 	return data;
 }
 
 void* DLL_to_array_forward(DLL_t *DLL)
 {
-	void* ar = malloc(DLL->nodeSize * DLL->length);
 	int i = 0;
-	DLL_node_t *curr = DLL->head;
+	DLL_node_t *curr;
+	char* ar = (char*)malloc(DLL->nodeSize * DLL->length);
+	if(!ar){
+		printf("Error: could not allocate the memory for the array.  \n");
+		return NULL;
+	}
+	if(!DLL){
+		printf("Error: must provide a valid pointer to a DLL to print.  \n");
+		return NULL;
+	}
+	if(DLL_Empty(DLL)){
+		return NULL;
+	}
+
+	curr = DLL->head;
+	
 	for(i = 0; i < DLL->length; i++){
 		memcpy( ((char *)ar + i * (DLL->nodeSize) ), curr->data, DLL->nodeSize );
 		curr = curr->next;
 	}
 
-	return ar;
+	return (void*)ar;
 }
 
 void* DLL_to_array_backward(DLL_t *DLL)
 {
-	void* ar = malloc(DLL->nodeSize * DLL->length);
 	int i = 0;
-	DLL_node_t *curr = DLL->tail;
+	DLL_node_t *curr;
+	void* ar = malloc(DLL->nodeSize * DLL->length);
+	if(!ar)
+	{
+		printf("Error: could not allocate the memory for the array");
+		return NULL;
+	}
+	if(!DLL)
+	{
+		printf("Error: must provide a valid pointer to a DLL to print.  \n");
+		return NULL;
+	}
+	if(DLL_Empty(DLL)){
+		return NULL;
+	}
+
+	curr = DLL->tail;
+
 	for(i = 0; i < DLL->length; i++){
 		memcpy( ((char *)ar + i * (DLL->nodeSize) ), curr->data, DLL->nodeSize );
 		curr = curr->prev;

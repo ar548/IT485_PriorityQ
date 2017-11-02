@@ -3,9 +3,6 @@
 #include <string.h>
 #include <stdio.h>
 
-#define get_heuristic(map, curr)		((map->end.x - curr->x)*(map->end.x - curr->x) + (map->end.y - curr->y)*(map->end.y - curr->y))
-
-
 DLL_t* path_find(TileMap *map)
 {
 	/* initialize variables */
@@ -14,23 +11,41 @@ DLL_t* path_find(TileMap *map)
 	DLL_t *ret = DLL_new(sizeof(Vector2D));
 	Vector2D *curr, *temp, v;
 	int *cost = (int*)malloc(sizeof(int) * map->width * map->height);
-	//int *heuristic = (int*)malloc(sizeof(int) * map->width * map->height);
+	int *heuristic = (int*)malloc(sizeof(int) * map->width * map->height);
 	int index_temp, index_curr;
 	int i, j, c;
+	char ch;
 	const int width = map->width;
 	const int height = map->height;
 	const int endx = map->end.x;
 	const int endy = map->end.y;
 	const int startx = map->start.x;
 	const int starty = map->start.y;
-	memset(cost, INT_MAX, sizeof(int) * map->width * map->height);		// max int for infinite
+
+	memset(cost, 10000, sizeof(int) * map->width * map->height);		// max int for infinite
 	//memset(heuristic, INT_MAX, sizeof(int) * map->width * map->height);
 	DLL_insert_front(open, &(map->start));
+	cost[starty * width + startx] = 0;
 
 	/*
 	 * the tilemap is laid out such that:
 	 *		(x, y) = y * width + x
 	 */
+
+	/* CHAR* NNOT INT* */
+	for(i = 0; i < height; i++)
+	{
+		for(j = 0; j < width-1; j++)
+		{
+			//printf("%c, ", map->map[i*width + j] - '0');
+			heuristic[i*width+j] = ((map->end.x - j)*(map->end.x - j) + (map->end.y - i)*(map->end.y - i));
+			printf("%i, ", heuristic[i*width + j]);
+		}
+		//printf("%c\n", map->map[i*width + j] - '0');
+		printf("%i\n", heuristic[i*width + j]);
+	}
+	
+
 
 	while(1)
 	{
@@ -94,7 +109,8 @@ DLL_t* path_find(TileMap *map)
 				return ret;
 			}
 			index_temp = temp->x + temp->y * width;
-			if(map->map[index_temp] == 0)
+			ch = map->map[index_curr] -'0';
+			if(!ch)
 			{
 				if(cost[index_curr] + 1 < cost[index_temp])
 				{
@@ -106,7 +122,7 @@ DLL_t* path_find(TileMap *map)
 		//free(temp);
 
 		// check right
-		v = vector2d(curr->x-1, curr->y);
+		v = vector2d(curr->x+1, curr->y);
 		temp = &v;
 		//free(&v);
 		if(temp->x > width) { 
@@ -158,7 +174,8 @@ DLL_t* path_find(TileMap *map)
 				return ret;
 			}
 			index_temp = temp->x + temp->y * width;
-			if(map->map[index_temp] == 0)
+			ch = map->map[index_curr] -'0';
+			if(!ch)
 			{
 				if(cost[index_curr] + 1 < cost[index_temp])
 				{
@@ -170,7 +187,7 @@ DLL_t* path_find(TileMap *map)
 		//free(temp);
 
 		// check above
-		v = vector2d(curr->x-1, curr->y);
+		v = vector2d(curr->x, curr->y-1);
 		temp = &v;
 		//free(&v);
 		if(temp->x < 0) { 
@@ -222,7 +239,8 @@ DLL_t* path_find(TileMap *map)
 				return ret;
 			}
 			index_temp = temp->x + temp->y * width;
-			if(map->map[index_temp] == 0)
+			ch = map->map[index_curr] -'0';
+			if(!ch)
 			{
 				if(cost[index_curr] + 1 < cost[index_temp])
 				{
@@ -234,7 +252,7 @@ DLL_t* path_find(TileMap *map)
 		//free(temp);
 
 		// check below
-		v = vector2d(curr->x-1, curr->y);
+		v = vector2d(curr->x, curr->y+1);
 		temp = &v;
 		//free(&v);
 		if(temp->x < 0) {
@@ -286,7 +304,8 @@ DLL_t* path_find(TileMap *map)
 				return ret;
 			}
 			index_temp = temp->x + temp->y * width;
-			if(map->map[index_temp] == 0)
+			ch = map->map[index_curr] -'0';
+			if(!ch)
 			{
 				if(cost[index_curr] + 1 < cost[index_temp])
 				{
